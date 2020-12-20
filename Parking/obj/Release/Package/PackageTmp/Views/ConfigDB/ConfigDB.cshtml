@@ -1,0 +1,57 @@
+﻿@model Parking.Models.ConfigDBModel.ConfigDBModel
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ConfigDBModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.servernameSelect, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.servernameSelect,  new SelectList(ViewBag.ServerNameList, "Value", "Text"), "", new { @class = "form-control", @id = "server_name" })
+
+                @*@Html.EditorFor(model => model.servernameSelect, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.servernameSelect, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.user, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.user, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.user, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control",@type="password" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        @if (ViewBag.dataBaseNameList != null)
+        {
+        <div class="form-group">
+                @Html.LabelFor(model => model.database_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">                   
+                    @Html.DropDownListFor(model => model.database_name, new SelectList(ViewBag.dataBaseNameList, "Value", "Text"), "", new { @class = "form-control", @id = "server_name" })
+                    @Html.ValidationMessageFor(model => model.database_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
